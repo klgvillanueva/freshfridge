@@ -11,7 +11,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "nodemonConfig": {
-    "ignore": ["build", "client"]
+    "ignore": [
+      "build",
+      "client"
+    ]
   },
   "repository": {
     "type": "git",
