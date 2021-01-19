@@ -17,14 +17,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wonderpus/freshfridge.git"
+    "url": "git+https://github.com/Fresh-Fridge-v2-0/freshfridge"
   },
-  "author": "Wonderpus",
+  "author": "Team Velocirabbits",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wonderpus/freshfridge/issues"
+    "url": "https://github.com/Fresh-Fridge-v2-0/freshfridge"
   },
-  "homepage": "https://github.com/wonderpus/freshfridge#readme",
+  "homepage": "https://github.com/Fresh-Fridge-v2-0/freshfridge",
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
