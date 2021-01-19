@@ -1,5 +1,5 @@
 const { OAuth2Client } = require('google-auth-library')
-const credentials = require('../../client/components/secrets.js');
+const credentials = require('../models/secret.js');
 const express = require('express');
 const router = express.Router();
 const cookieParser = require('cookie-parser');
