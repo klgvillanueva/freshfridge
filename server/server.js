@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require("body-parser");
 const authRouter = require('./routes/authRouter.js');
 const listRouter = require('./routes/listRouter.js');
+const householdRouter = require('./routes/householdRouter.js');
 
 const db = require('./models/freshModel');
 
@@ -28,13 +29,16 @@ app.use((req, res, next) => {
   METHOD: ${req.method}\n
   *******************\n`);
   return next();
-})
+});
 
-//Any requests to auth will be handled within authRouter.js
+// Any requests to auth will be handled within authRouter.js
 app.use('/auth', authRouter);
 
-//Any requests to list will be handled within listRouter.js
+// Any requests to list will be handled within listRouter.js
 app.use('/lists', listRouter);
+
+// Any requests to household will be handled within householdRouter.js
+app.use('/household', householdRouter);
 
 /***  MAIN PAGE HANDLER ***/
 

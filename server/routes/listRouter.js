@@ -17,17 +17,17 @@ router.put('/',
 });
 
 //remove item from list and retrieve list
-router.delete('/', 
-  deleteItem, 
+router.delete('/',
+  deleteItem,
   (req, res) => {
-    res.status(200).json([...res.locals.items])
+    res.status(200).json([...res.locals.items]);
   }
 );
 
 //move item from one list to another and retrieve list
-router.patch('/', 
-  updateItem, 
+router.patch('/',
+  updateItem,
   (req, res) => res.status(200).json([...res.locals.items])
 );
 
-module.exports = router; 
+module.exports = router;
