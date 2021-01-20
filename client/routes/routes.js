@@ -9,24 +9,23 @@ import User from '../pages/userPage.jsx';
 import SignUp from '../pages/signupPage.jsx';
 import NoMatch404Error from '../pages/404Error.jsx';
 
-
 const RoutesForApp = () => (
   <Router>
     <Route exact path="/">
       <Login />
     </Route>
-    <Route path="/user" >
-      <User/> 
+    <Route path="/user">
+      <User />
     </Route>
-    <Route path="/household"> 
-      <Household/> 
+    <Route path="/household">
+      <Household />
     </Route>
-    <Route path="/signup"> 
-      <SignUp/> 
+    <Route path="/signup">
+      <SignUp />
     </Route>
     <Route>
       <NoMatch404Error />
-    </Route>  
+    </Route>
   </Router>
 );
 

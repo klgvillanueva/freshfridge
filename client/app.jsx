@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import NavBar from './components/NavBar.jsx';
 //import Routes from './routes/routes.js'
 
@@ -52,11 +52,7 @@ class App extends React.Component {
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/" component={Login} />
         </Switch>
-</Router>
-          
-        
-            
-          
+    </Router>
         </div>
 
 
@@ -121,7 +117,7 @@ import SignUp from './pages/signupPage.jsx';
 
 
 
-*/
+
 
 <Router>
       <Switch>
