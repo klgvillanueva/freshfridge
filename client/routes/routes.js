@@ -6,7 +6,7 @@ import Login from '../pages/login';
 import ShoppingList from '../pages/shoppingList';
 import SignUp from '../pages/signup';
 import MainContainer from '../Container/MainContainer.jsx';
-import NoMatch from '../pages/noMatch';
+import NoMatch404Error from '../pages/404Error';
 
 const RoutesForApp = () => (
   <Router>
@@ -23,7 +23,7 @@ const RoutesForApp = () => (
       <MainContainer />
     </Route>
     <Route>
-      <NoMatch />
+      <NoMatch404Error />
     </Route>
   </Router>
 );
