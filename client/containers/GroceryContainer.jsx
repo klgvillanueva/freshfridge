@@ -21,31 +21,21 @@ class GroceryContainer extends Component {
   // declare event handlers
 
   render() {
-    
-    // iterate through state to render grocery item
-    
-      const mappedItems = items.map((item, index) => {
-    return <li key={`type${index}`}>
-              {`${item.name}`}
-              <span className="align-right">
-                <button onClick={() => move(item._id, '\'fridge\'')}>  {/* ** SQL needs string parameters that are going to be concatenated onto a query to have a second pair of single quotes ** */}
-                <i className="far fa-check-circle"></i>
-                </button>
-                <button onClick={() => remove(item._id)}>
-                  <i className="fas fa-trash-alt"></i>
-                </button>
-              </span>
-            </li>;
-    });
 
-  
+    // create groceryItems = [];
+
+    // iterate through items list and push <GroceryItem > for each item
 
     return (
     <div className="GroceryContainer">
       <h1>My Grocery List</h1>
       <button id='AddItemBtn' onClick={() => /* event handler to invoke dispatcher to add */ }>
-        </button>
-      {}
+      </button>
+
+      <div className="GroceryList">
+        {/* {groceryItems} */}
+      </div>
+      
     </div>
     );
   
@@ -56,3 +46,28 @@ class GroceryContainer extends Component {
 
 //export default connect(mapStateToProps, mapDispatchToProps)(GroceryContainer);
 export default GroceryContainer;
+
+
+
+
+
+
+/* Original Code
+
+      const mappedItems = items.map((item, index) => {
+    return <li key={`type${index}`}>
+              {`${item.name}`}
+              <span className="align-right">
+                <button onClick={() => move(item._id, '\'fridge\'')}>  {/* ** SQL needs string parameters that are going to be concatenated onto a query to have a second pair of single quotes ** }
+                <i className="far fa-check-circle"></i>
+                </button>
+                <button onClick={() => remove(item._id)}>
+                  <i className="fas fa-trash-alt"></i>
+                </button>
+              </span>
+            </li>;
+    });
+
+
+
+*/

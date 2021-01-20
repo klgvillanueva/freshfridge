@@ -30,9 +30,9 @@ render() {
     <h1> My Fridge </h1>
     <button id='AddItemBtn' onClick={() => /* event handler to invoke dispatcher to add */ }>
       </button>
-    {/* 
-      {fridgeItems}
-    */}
+    <div className='FridgeList'>  
+    {/* {fridgeItems */}
+    </div>
   </div>
   );
 
@@ -41,5 +41,5 @@ render() {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(FridgeContainer);
+//export default connect(mapStateToProps, mapDispatchToProps)(FridgeContainer);
 export default FridgeContainer;

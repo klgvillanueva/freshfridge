@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
-const groceryItem = (props) => {
+const GroceryItem = (props) => {
 
   // destructure the props object
+
+  // need to render the user name
 
   return (
     <div className = 'GroceryItemCard' key={`G${index}`}  >
@@ -21,4 +23,4 @@ const groceryItem = (props) => {
   )
 };
 
-export default groceryItem;
+export default GroceryItem;
