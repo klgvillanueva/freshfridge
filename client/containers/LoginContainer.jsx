@@ -56,6 +56,6 @@ const MainContainer = () => {
 //     {/* <GoogleAuth /> */
 //     <ListContainer fetched={fetched} setFetched={setFetched} />
 //     <AddItem setFetched={setFetched} />
-//   </div>
+//   </div>]
+
 // );
-// };

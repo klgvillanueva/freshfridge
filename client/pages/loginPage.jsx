@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import LoginContainer from '../containers/LoginContainer.jsx';
+import '../styles/login.scss';
 
-<<<<<<< HEAD
-=======
 const mapDispatchToProps = (dispatch) => {};
-
->>>>>>> main
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +16,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className="login_container">
         <p>Login Works!</p>
         <LoginContainer />
       </div>

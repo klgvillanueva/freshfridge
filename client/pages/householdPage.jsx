@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FridgeContainer from '../containers/FridgeContainer.jsx';
-import GroceryContainer from '../containers/FridgeContainer.jsx';
+import GroceryContainer from '../containers/GroceryContainer.jsx';
 
 
 const mapStateToProps = (state) => {

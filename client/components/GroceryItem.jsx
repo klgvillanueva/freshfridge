@@ -23,9 +23,9 @@ const GroceryItem = (props) => {
             * event handler -> to invoke the dispatcher to create 
           */}}> 
       </button>
-      <button id='EditItemBtn' onClick={() => /* event handler to invoke dispatcher to edit */ }>
+      <button id='EditItemBtn' onClick={() => {/* event handler to invoke dispatcher to edit */ }}>
       </button>
-      <button id='DeleteItemBtn' onClick={() => /* event handler to invoke dispatcher to delete */ }>
+      <button id='DeleteItemBtn' onClick={() => {/* event handler to invoke dispatcher to delete */ }}>
       </button>
     </div>
   )
