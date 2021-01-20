@@ -13,19 +13,29 @@ app.use(express.json());
 // vanilla log in
 router.put('/login',    
   authController.findUser,
+  authController.validatePassword,
   authController.setCookie,
-  listController.getList,
-  (req, res) => res.status(201).json(res.locals.user_id) // todo: what should be sent back on the response?
+  // listController.getList,
+  (req, res) => res.status(201).json({
+    userId: res.locals.userId,
+    firstName: res.locals.firstName,
+    username: res.locals.username,
+    householdId: res.locals.householdId
+  }) // todo: what should be sent back on the response?
 );
 
 router.put('/signup',
   authController.getAllUsers,
   authController.checkUniqueness,    
   authController.addUser,
-  authController.findUser,
+  // authController.findUser,
   authController.setCookie,
-  listController.getList,
-  (req, res) => res.status(201).json(res.locals.user_id) // todo: what should be sent back on the response?
+  // listController.getList,
+  (req, res) => res.status(200).json({
+    userId: res.locals.userId,
+    firstName: res.locals.firstName,
+    username: res.locals.username,
+  }) // todo: what should be sent back on the response?
 );
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import '../styles/navbar.css';
+import '../styles/navbar.scss';
 
 const NavBar = () => (
   <nav className="navbar">
@@ -16,27 +16,29 @@ const NavBar = () => (
       exact
       activeClassName="navbar_link--active"
       className="navbar_link"
-      to="/SignUp"
+      to="/user"
     >
-      Sign Up
+      My Fridge
     </NavLink>
     <NavLink
       exact
       activeClassName="navbar_link--active"
       className="navbar_link"
-      to="/ShoppingList"
+      to="/household"
     >
-      Shopping List
+      Household
     </NavLink>
     <NavLink
       exact
       activeClassName="navbar_link--active"
       className="navbar_link"
-      to="/GroceryList"
+      to="/"
     >
-      Grocery List
+      Sign Out
     </NavLink>
   </nav>
 );
+
+/* make sign out a button and put in an event handler to up */
 
 export default NavBar;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GroceryList = () => <div>Grocery List Works!</div>;
+const Household = () => <div>Household Works!</div>;
 
 // class GroceryList extends React.PureComponent {
 //   render() {
@@ -8,4 +8,4 @@ const GroceryList = () => <div>Grocery List Works!</div>;
 //   }
 // }
 
-export default GroceryList;
+export default Household;
