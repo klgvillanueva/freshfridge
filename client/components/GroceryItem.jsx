@@ -4,11 +4,19 @@ const GroceryItem = (props) => {
 
   // destructure the props object
 
-  // need to render the user name
+    // confirm if username is null,
+
+    let name;
+    if (!username) {
+      name = null
+    } else {
+      name = <span> {props.username} </span>;
+    }
 
   return (
     <div className = 'GroceryItemCard' key={`G${index}`}  >
       <span> {/* item name */}   </span>
+      {name}
       <button id='MoveToFridgeBtn'
           onClick={() => {/* 
             * put a fridge image

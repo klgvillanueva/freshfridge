@@ -24,7 +24,8 @@ class FridgeContainer extends Component {
   // iterate through items list and push <FridgeItem > for each item
 
 render() {
-    
+
+
   return (
   <div className="FridgeContainer"> {/*Faraz, please rename the className to LoginContainer and match in stylesheet*/}
     <h1> My Fridge </h1>

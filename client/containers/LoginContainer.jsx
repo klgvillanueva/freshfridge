@@ -23,7 +23,7 @@ class LoginContainer extends Component {
       {/* 
       input for Username 
       input for Password
-      login button
+      login button // onClick -> invoke dispatcher and pass as an argument {username: string, password: string}
       sign up button with event handler to trigger the signup modal
       */}
     </div>

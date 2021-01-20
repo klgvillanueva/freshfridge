@@ -39,6 +39,7 @@ class User extends Component {
 
      */
 
+          // make sure the right props and dispatchers get distributed to the containers
 
   render() {
     return( 

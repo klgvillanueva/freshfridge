@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import LoginContainer from '../containers/LoginContainer.jsx';
 
-const mapDispatchToProps = (dispatch) => {
-
-}
-
 class Login extends Component {
   constructor(props){
     super(props)
@@ -28,7 +24,5 @@ class Login extends Component {
   }
 
 }
-
-//const Login = () => <div>Login Works!</div>;
 
 export default Login;
