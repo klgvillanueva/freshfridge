@@ -122,3 +122,16 @@ import SignUp from './pages/signupPage.jsx';
 
 
 */
+
+<Router>
+      <Switch>
+          <Route exact path="/user" component={User} />
+          <Route exact path="/household" component={Household} />
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/" component={Login} />
+        </Switch>
+</Router>
+
+
+
+*/
