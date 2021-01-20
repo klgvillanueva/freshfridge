@@ -1,3 +1,6 @@
+@import 'navbar.scss';
+
+
 * {
   box-sizing: border-box;
 }
@@ -7,12 +10,8 @@ html {
 }
 
 body {
-  /* font-family: "Sofia", sans-serif; */
   font-family: 'Times New Roman', Times, serif;
-  background: linear-gradient(
-    to top right,
-    blue, lightblue, white
-  );
+  background-color: white; 
   background-attachment: fixed;
   padding: 0;
   margin: 0;
@@ -25,6 +24,12 @@ h1 {
 
 h2,h3,h4,h5,h6 {
   margin: 0px;
+}
+
+.appHeader {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .MainContainer {

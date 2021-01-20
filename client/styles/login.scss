@@ -1,0 +1,16 @@
+body {
+  background: linear-gradient(to top right, blue, lightblue, white);
+  background-attachment: fixed;
+}
+.logInForm {
+  width: 300px;
+  box-shadow: 0 0 3px 0 rgba(1, 1, 1, 0.3);
+  background: rgb(255, 255, 255);
+  padding: 20px;
+  margin: 8% auto 0;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.inputBox {
+}
