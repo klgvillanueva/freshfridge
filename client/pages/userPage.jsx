@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-
-
+import FridgeContainer from '../containers/FridgeContainer.jsx';
+import GroceryContainer from '../containers/GroceryContainer.jsx';
 
 
 const mapStateToProps = (state) => {
@@ -39,12 +39,14 @@ class User extends Component {
 
      */
 
+          // make sure the right props and dispatchers get distributed to the containers
 
   render() {
     return( 
     <div className='UserGrid'>
       My User Page Works!
-
+      <FridgeContainer />
+      <GroceryContainer />
     </div>
     )
   }

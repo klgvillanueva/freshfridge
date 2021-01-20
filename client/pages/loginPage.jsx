@@ -3,7 +3,6 @@ import LoginContainer from '../containers/LoginContainer.jsx';
 import '../styles/login.scss';
 
 const mapDispatchToProps = (dispatch) => {};
-
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +23,5 @@ class Login extends Component {
     );
   }
 }
-
-//const Login = () => <div>Login Works!</div>;
 
 export default Login;
