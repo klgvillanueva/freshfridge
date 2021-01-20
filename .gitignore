@@ -13,6 +13,9 @@ server/models/databaseURI.js
 client/components/secrets.js
 server/models/secret.js
 
+# DB Create script
+server/models/db_create.sql
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
