@@ -39,12 +39,9 @@ router.put('/signup',
 );
 
 
-router.put('/logout', (req, res, next) => {
-    res.cookie('user_id', 2);
-    return next();
-    },
-    listController.getList, 
-    (req, res) => res.status(201).json(res.locals.user_id) // todo: what should be sent back on the response?
+router.put('/logout', 
+    authController.logout,
+    (req, res) => res.status(201).json('success') // todo: what should be sent back on the response?
 );
 
 router.get('/users',

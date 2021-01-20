@@ -101,7 +101,10 @@ authController.addUser = (req, res, next) => {
   });
 };
 
-
+authController.logout = (req, res, next) => {
+  res.clearCookie('userId');
+  return next();
+}
 // --> make a cookie
 // res.cookie('user_id', 'queried user id')
 // information on user returned from database
