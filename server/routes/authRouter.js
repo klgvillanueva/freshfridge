@@ -14,9 +14,10 @@ app.use(express.json());
 router.put('/login',    
   authController.findUser,
   authController.validatePassword,
+  authController.createSession,
   authController.setCookie,
   // listController.getList,
-  (req, res) => res.status(201).json({
+  (req, res) => res.status(200).json({
     userId: res.locals.userId,
     firstName: res.locals.firstName,
     username: res.locals.username,
@@ -29,6 +30,7 @@ router.put('/signup',
   authController.checkUniqueness,    
   authController.addUser,
   // authController.findUser,
+  authController.createSession,
   authController.setCookie,
   // listController.getList,
   (req, res) => res.status(200).json({
@@ -38,13 +40,14 @@ router.put('/signup',
   }) // todo: what should be sent back on the response?
 );
 
+router.get('/isLoggedIn',
+  authController.isLoggedIn, 
+  (req, res) => res.status(200).json('user is logged in'));
 
-router.put('/logout', (req, res, next) => {
-    res.cookie('user_id', 2);
-    return next();
-    },
-    listController.getList, 
-    (req, res) => res.status(201).json(res.locals.user_id) // todo: what should be sent back on the response?
+
+router.put('/logout', 
+    authController.logout,
+    (req, res) => res.status(201).json('success') // todo: what should be sent back on the response?
 );
 
 router.get('/users',
