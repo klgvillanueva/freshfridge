@@ -16,27 +16,7 @@ class LoginContainer extends Component {
   // declare event handlers
 
   render() {
-    return (
-      <div className="MainContainer">
-        {' '}
-        {/*Faraz, please rename the className to LoginContainer and match in stylesheet*/}
-        {/* 
-      input for Username 
-      input for Password
-      login button
-      sign up button with event handler to trigger the signup modal
-
-
-  <div className="logInForm">
-    <h1>Log In</h1>
-    <input type="email" className="inputBox" placeholder="Your Email" />
-    <input type="password" className="inputBox" placeholder="Your Password" />
-    <p>I agree to the Terms of Services</p>
-  </div>
-
-      */}
-      </div>
-    );
+    return <div className="MainContainer"></div>;
   }
 }
 
@@ -56,6 +36,6 @@ const MainContainer = () => {
 //     {/* <GoogleAuth /> */
 //     <ListContainer fetched={fetched} setFetched={setFetched} />
 //     <AddItem setFetched={setFetched} />
-//   </div>
+//   </div>]
+
 // );
-// };

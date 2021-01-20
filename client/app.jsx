@@ -27,6 +27,7 @@ class App extends React.Component {
           <NavBar />
         </div>
         <div className="content">
+          <p>Test</p>
           <RoutesForApp />
         </div>
       </div>

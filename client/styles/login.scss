@@ -1,3 +1,11 @@
+.login_container {
+  grid-column: 1/-1;
+  background-color: black;
+  margin-top: 10%;
+  height: 50%;
+}
+
+/*
 body {
   background: linear-gradient(to top right, blue, lightblue, white);
   background-attachment: fixed;
@@ -11,6 +19,4 @@ body {
   border-radius: 5px;
   text-align: center;
 }
-
-.inputBox {
-}
+*/
