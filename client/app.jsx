@@ -15,13 +15,20 @@ const mapDispatchToProps = (dispatch) => {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      loggedIn: false,
+    };
   }
 
   render() {
     return (
       <div className="masterContainer">
-        <Login />
+        <div className="masterContainerHeader">
+          <NavBar />
+        </div>
+        <div className="content">
+          <RoutesForApp />
+        </div>
       </div>
     );
   }
@@ -29,15 +36,3 @@ class App extends React.Component {
 
 export default App;
 //export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-/*
-
-
-        <div className="masterContainerHeader">
-          <NavBar />
-        </div>
-        <div className="content">
-          <RoutesForApp />
-        </div>
-
-*/
