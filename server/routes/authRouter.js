@@ -20,10 +20,10 @@ router.put('/login',
   authController.setCookie,
   // listController.getList,
   (req, res) => res.status(200).json({
-    userId: res.locals.userId,
+    userID: res.locals.userId,
     firstName: res.locals.firstName,
     username: res.locals.username,
-    householdId: res.locals.householdId
+    householdID: res.locals.householdId
   }) // todo: what should be sent back on the response?
 );
 
@@ -37,7 +37,7 @@ router.put('/signup',
   authController.setCookie,
   // listController.getList,
   (req, res) => res.status(200).json({
-    userId: res.locals.userId,
+    userID: res.locals.userId,
     firstName: res.locals.firstName,
     username: res.locals.username,
   }) // todo: what should be sent back on the response?
