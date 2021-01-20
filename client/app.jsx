@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './components/NavBar.jsx';
 import RoutesForApp from './routes/routes.js';
+import './styles/app.scss';
+import Login from './pages/loginPage.jsx';
 
 const mapStateToProps = (state) => {
   //navbar state
@@ -17,30 +19,9 @@ class App extends React.Component {
   }
 
   render() {
-    /**
-     *     
-     * let displayNavBar;
-    if (this.props.isLoggedIn){
-      displayNavBar = <NavBar />
-    } else {
-      displayNavBar = null;
-    }
-     */
-
     return (
-      <div>
-        <Link to="/user">
-          <img
-            id="logo"
-            src="./assets/fflogo.png"
-            alt="Fresh Fridge Logo"
-            height="150px"
-            width="250px"
-          ></img>
-        </Link>
-        <NavBar />
-        <hr />
-        <RoutesForApp />
+      <div className="masterContainer">
+        <Login />
       </div>
     );
   }
@@ -48,3 +29,15 @@ class App extends React.Component {
 
 export default App;
 //export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+/*
+
+
+        <div className="masterContainerHeader">
+          <NavBar />
+        </div>
+        <div className="content">
+          <RoutesForApp />
+        </div>
+
+*/

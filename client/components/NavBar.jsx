@@ -4,6 +4,13 @@ import '../styles/navbar.scss';
 
 const NavBar = () => (
   <nav className="navbar">
+    <img
+      id="logo"
+      src="./assets/fflogo.png"
+      alt="Fresh Fridge Logo"
+      height="100px"
+    />
+
     <NavLink
       exact
       activeClassName="navbar_link--active"
