@@ -5,6 +5,7 @@ const router = express.Router();
 const cookieParser = require('cookie-parser');
 const authController = require('../controllers/authController.js');
 const listController = require('../controllers/listController.js');
+const bcryptController = require('../controllers/bcryptController.js');
 
 const app = express();
 app.use(cookieParser());
@@ -13,7 +14,8 @@ app.use(express.json());
 // vanilla log in
 router.put('/login',    
   authController.findUser,
-  authController.validatePassword,
+  // authController.validatePassword,
+  bcryptController.verifyPassword,
   authController.createSession,
   authController.setCookie,
   // listController.getList,
@@ -27,7 +29,8 @@ router.put('/login',
 
 router.put('/signup',
   authController.getAllUsers,
-  authController.checkUniqueness,    
+  authController.checkUniqueness,   
+  bcryptController.hashPassword, 
   authController.addUser,
   // authController.findUser,
   authController.createSession,
@@ -54,7 +57,6 @@ router.get('/users',
   authController.getAllUsers,
   (req, res) => res.status(200).json(res.locals.allUsers)
 )
-
 
 /* 
 TODO

@@ -75,7 +75,8 @@ authController.checkUniqueness = (req, res, next) => {
 
 authController.addUser = (req, res, next) => {
   // add this user to the database. We want to get their user id.
-  const { firstName, username, password } = req.body;
+  const { firstName, username } = req.body;
+  const { hashPw } = res.locals;
   // console.log('Name and password received at authController.addUser: ', name, password);
 
   // query for the _id on users table that matches the received name and password
@@ -83,7 +84,7 @@ authController.addUser = (req, res, next) => {
     `INSERT INTO users (first_name, username, password)
     VALUES ($1, $2, $3)
     RETURNING *`;
-  const values = [firstName, username, password];
+  const values = [firstName, username, hashPw ];
 
   // console.log("the addUser query: ", query, "values: ", values);
   db.query(query, values, (error, result) => {
@@ -103,9 +104,9 @@ authController.addUser = (req, res, next) => {
 
 authController.logout = (req, res, next) => {
   try {
-    res.clearCookie('userId');
     const query = `DELETE FROM sessions WHERE cookie_id = ($1)`;
     const params = [req.cookies.ssid];
+    res.clearCookie('ssid');
     db.query(query, params, (error, result) => {
       if (error) return next({ log: `middleware error caught in authController.logout: ${error}` });
       return next();
