@@ -102,8 +102,18 @@ authController.addUser = (req, res, next) => {
 };
 
 authController.logout = (req, res, next) => {
-  res.clearCookie('userId');
-  return next();
+  try {
+    res.clearCookie('userId');
+    const query = `DELETE FROM sessions WHERE cookie_id = ($1)`;
+    const params = [req.cookies.ssid];
+    db.query(query, params, (error, result) => {
+      if (error) return next({ log: `middleware error caught in authController.logout: ${error}` });
+      return next();
+    })
+  } catch (error) {
+    return next({ log: `middleware error caught in authController.logout: ${error}` });
+  }
+  
 }
 // --> make a cookie
 // res.cookie('user_id', 'queried user id')
@@ -113,10 +123,37 @@ authController.logout = (req, res, next) => {
 authController.setCookie = (req, res, next) => {
   // receives user id on res.locals (?)
   // sets a cookie
-  res.cookie('userId', res.locals.userId); //->  res.cookie(key,value)
+  res.cookie('ssid', res.locals.userId); //->  res.cookie(key,value)
   console.log ('Cookie has been created!', res.cookie);
   return next();
 };
+
+authController.createSession = (req, res, next) => {
+  const query = `INSERT INTO sessions (cookie_id, expires) VALUES ($1, current_timestamp + interval '1 hour');`;
+  const params = [res.locals.userId];
+  // console.loge(``)
+  db.query(query, params, (error, result) => {
+    if (error) return next({log: `middleware error caught in authController.createSession: ${error}`});
+    console.log(`session created with id ${res.locals.userId}`);
+    return next();
+  })
+};
+
+authController.isLoggedIn = (req, res, next) => {
+  try {
+    const query = `SELECT cookie_id from sessions
+      WHERE cookie_id = ($1) AND expires >= current_timestamp`;
+    const params = [req.cookies.ssid];
+    db.query(query, params, (error, result) => {
+      console.log('query result:' + result)
+      if (error) return next({log: `middleware error caught in authController.isLoggedIn: ${error}`});
+      if (!result.rows.length) return res.status(203).json('User logged out. Please login.');
+      return next();
+    });
+  } catch (error) {
+    return next({ log: `middleware error caught in authController.isLoggedIn: ${error}` });
+  }
+}
 
 // TODO: this is Google OAuth stuff.
 authController.getToken = (req, res, next) => {
