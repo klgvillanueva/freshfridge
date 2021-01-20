@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './components/NavBar.jsx';
+<<<<<<< HEAD
 //import Routes from './routes/routes.js'
 
 import Household from './pages/householdPage.jsx';
@@ -9,6 +10,11 @@ import User from './pages/userPage.jsx';
 import SignUp from './pages/signupPage.jsx';
 
 //import Routes from './routes/routes';
+=======
+import RoutesForApp from './routes/routes.js';
+import './styles/app.scss';
+import Login from './pages/loginPage.jsx';
+>>>>>>> main
 
 const mapStateToProps = (state) => {
   //navbar state 
@@ -24,6 +30,7 @@ class App extends React.Component {
   }
 
   render() {
+<<<<<<< HEAD
 /*
     let displayNavBar;
     if (this.props.isLoggedIn){
@@ -56,6 +63,12 @@ class App extends React.Component {
         </div>
 
 
+=======
+    return (
+      <div className="masterContainer">
+        <Login />
+      </div>
+>>>>>>> main
     );
   }
 }
@@ -63,6 +76,7 @@ class App extends React.Component {
 export default App;
 //export default connect(mapStateToProps, mapDispatchToProps)(App);
 
+<<<<<<< HEAD
 
 
 
@@ -131,3 +145,16 @@ import SignUp from './pages/signupPage.jsx';
 
 
 */
+=======
+/*
+
+
+        <div className="masterContainerHeader">
+          <NavBar />
+        </div>
+        <div className="content">
+          <RoutesForApp />
+        </div>
+
+*/
+>>>>>>> main
