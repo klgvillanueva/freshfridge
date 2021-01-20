@@ -10,6 +10,7 @@ lerna-debug.log*
 server/models/databaseURI.js
 
 # Google Auth credentials
+client/components/secrets.js
 server/models/secret.js
 
 # Diagnostic reports (https://nodejs.org/api/report.html)

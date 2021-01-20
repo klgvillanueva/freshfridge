@@ -1,6 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/index.css';
-import MainContainer from './components/MainContainer.jsx';
+import { BrowserRouter } from 'react-router-dom';
+import App from './app.jsx';
 
-ReactDOM.render(<MainContainer />, document.getElementById('root'));
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById('root')
+);
