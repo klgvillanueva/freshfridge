@@ -1,5 +1,4 @@
 import React from 'react';
-import MainContainer from './Container/MainContainer.jsx';
 import NavBar from './components/NavBar';
 import Routes from './routes/routes';
 

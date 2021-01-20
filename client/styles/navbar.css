@@ -6,7 +6,7 @@
   background-color: #eceff1;
 }
 
-.navbar__link {
+.navbar_link {
   margin: 1em;
   font-size: 2em;
   font-family: 'Roboto', sans-serif;
@@ -18,11 +18,11 @@
   border-bottom: 3px solid transparent;
 }
 
-.navbar__link:hover {
+.navbar_link:hover {
   transform: translateY(-2px);
 }
 
-.navbar__link--active {
+.navbar_link--active {
   border-bottom: 3px solid #29b6f6;
   transition: border-bottom 0.5s ease-in-out;
 }
