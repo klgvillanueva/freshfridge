@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Link, Switch as Router } from 'react-router-dom';
 import GroceryList from '../pages/groceryList';
 import Login from '../pages/login';
 import ShoppingList from '../pages/shoppingList';
@@ -9,7 +9,7 @@ import MainContainer from '../Container/MainContainer.jsx';
 import NoMatch from '../pages/noMatch';
 
 const RoutesForApp = () => (
-  <Switch>
+  <Router>
     <Route exact path="/">
       <Login />
     </Route>
@@ -25,7 +25,7 @@ const RoutesForApp = () => (
     <Route>
       <NoMatch />
     </Route>
-  </Switch>
+  </Router>
 );
 
 export default RoutesForApp;
