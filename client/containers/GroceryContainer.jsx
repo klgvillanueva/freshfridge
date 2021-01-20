@@ -29,7 +29,10 @@ class GroceryContainer extends Component {
     return (
     <div className="GroceryContainer">
       <h1>Grocery List</h1>
-      <button id='AddItemBtn' onClick={() => {/* event handler to invoke dispatcher to add */ }}>
+      <button id='AddItemBtn' onClick={() => {/* event handler to invoke dispatcher to add 
+      
+      pass into the AddItem a property of "location: grocery"
+      */ }}>
       </button>
 
       <div className="GroceryList">

@@ -29,7 +29,10 @@ render() {
   return (
   <div className="FridgeContainer"> {/*Faraz, please rename the className to LoginContainer and match in stylesheet*/}
     <h1> Fridge </h1>
-    <button id='AddItemBtn' onClick={() => {/* event handler to invoke dispatcher to add */ }}>
+    <button id='AddItemBtn' onClick={() => {/* event handler to invoke dispatcher to add 
+    
+    pass into the AddItem a property of "location: fridge"
+    */ }}>
       </button>
     <div className='FridgeList'>  
     {/* {fridgeItems */}
