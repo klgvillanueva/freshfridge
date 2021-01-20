@@ -12,24 +12,26 @@ const mapStateToProps = (dispatch) => {
 
 
 
-class FridgeContainer extends Component{
+class FridgeContainer extends Component {
   constructor(props) {
     super(props)
 
   }
 
-}
 
-// create array of items
+// create fridgeItems = [];
 
+  // iterate through items list and push <FridgeItem > for each item
 
 render() {
     
   return (
   <div className="FridgeContainer"> {/*Faraz, please rename the className to LoginContainer and match in stylesheet*/}
     <h1> My Fridge </h1>
+    <button id='AddItemBtn' onClick={() => /* event handler to invoke dispatcher to add */ }>
+      </button>
     {/* 
-      rows of items
+      {fridgeItems}
     */}
   </div>
   );
