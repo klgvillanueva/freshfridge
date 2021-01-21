@@ -34,6 +34,7 @@ export const loggingIn = ({ username, password }) => ( dispatch ) => {
           firstName: firstName,
           username: username,
           userItems: userItems,
+          householdID: householdID,
         }
       });
 
@@ -69,7 +70,7 @@ export const createUser = ({ firstName, username, password }) => ( dispatch ) =>
   })
     .then((data) => data.json())
     .then((data) => {
-      const { firstName, username, password } = data;
+      const { userID, firstName, username, householdID } = data;
 
       // route to overall Reducer
       dispatch({
@@ -84,6 +85,7 @@ export const createUser = ({ firstName, username, password }) => ( dispatch ) =>
           userID: userID,
           firstName: firstName,
           username: username,
+          householdID: householdID, // could be null
         }
       });
     })
@@ -173,7 +175,7 @@ export const joinHousehold = ({ householdID, userID }) => ( dispatch ) => {
   })
     .then((data) => data.json())
     .then((data) => {
-      const { userID, firstName, username, householdID, householdName, householdItems } = data;
+      const { householdID, householdName, householdItems } = data;
       
       // route to UserReducer
       dispatch({
@@ -207,7 +209,7 @@ export const addItem = ({ itemName, priority, shared, grocery, fridge, userID, h
     },
     body: JSON.stringify({
       itemName: itemName,
-      priority: number,
+      priority: priority,
       shared: shared,
       grocery: grocery,
       fridge: fridge,

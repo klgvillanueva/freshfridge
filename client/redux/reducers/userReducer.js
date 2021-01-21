@@ -1,72 +1,57 @@
 import * as types from '../actions/constants/actionTypes';
 
-// const initialState = {
-  //   itemName: '',
-  //   priority: 1,
-  //   shared: null,
-  //   grocery: null,
-  //   fridge: null,
-  //   userID: 0,
-  //   householdID: 0,
-  // }
+const initialState = {
+    isLoggedIn: false,
+    userID: null,
+    firstName: "",
+    username: "",
+    userItems: [],
+    householdID: null,
+  }
 
-const Reducer = (state = initialState, action) => {
-  // let marketList;
+const userReducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case types.USER_INFO: {
-      // return updated state
+    case types.IS_LOGGED_IN: {
       return {
         ...state,
-        userID: userID,
-        firstName: firstName,
-        username: username,
-        userItems: userItems,
+        isLoggedIn: action.payload,
       };
     }
 
-    case types.HOUSEHOLD_INFO: {
+    case types.IS_LOGGED_OUT: {
       return {
         ...state, 
-        householdID: householdID,
-        householdName: householdName,
-        householdItems: householdItems, 
+        isLoggedIn: action.payload,
       };
     }
     
-    case types.ADD_CARD: {
-      const totalCards = state.totalCards + 1;
-      marketList = state.marketList.map((mkt) => {
-        if (mkt.marketId === action.payload) {
-          const newMkt = {...mkt};
-          newMkt.cards += 1;
-          return newMkt;
-        }
-        return mkt;
-      });
+    case types.USER_INFO: {
+      const newUserItems;
+      // if user is a new user, then server will not send back a userItem property. we must check if it exists: 
+      !action.payload.userItems ? newUserItems = [] : newUserItems = action.payload.userItems;
 
       return {
         ...state,
-        marketList: marketList,
-        totalCards: totalCards
+        userID: action.payload.userID,
+        firstName: action.payload.firstName,
+        username: action.payload.username,
+        userItems: newUserItems,
+        householdID: action.payload.householdID,
       };
     }
 
-    case types.DELETE_CARD: {
-      const totalCards = state.totalCards - 1;
-      marketList = state.marketList.map((mkt) => {
-        if (mkt.marketId === action.payload) {
-          const newMkt = { ...mkt };
-          newMkt.cards -= 1;
-          return newMkt;
-        }
-        return mkt;
-      });
-      
+    case types.ADD_HOUSEHOLD_TO_USER: {
       return {
         ...state,
-        marketList: marketList,
-        totalCards: totalCards
+        householdID: action.payload
+      };
+    }
+
+    case types.UPDATE_USER_ITEMS: {
+      return {
+        ...state,
+        userItems: action.payload
       };
     }
 
