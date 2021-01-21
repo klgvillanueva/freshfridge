@@ -4,8 +4,8 @@ import * as types from './constants/actionTypes';
 /**** IF NEEDED, DOES API CALLS TO SERVER AND CREATES THE ACTION OBJ WITH INFO THAT STATE NEEDS TO UPDATE ***/
 
 // to log into account
-export const loggingIn = (username, password) => ( dispatch ) => {
-
+export const loggingIn = (username, password, history) => ( dispatch ) => {
+  console.log('history in dispatcher ' + history);
   fetch('/auth/login', {
     method: 'POST',
     headers: {
@@ -48,6 +48,7 @@ export const loggingIn = (username, password) => ( dispatch ) => {
             householdItems: householdItems, // includes all properties of an item AND user's first_name
           }
         })
+        history.push('/user');
       } else {
         return alert('Invalid username or password')
       }
