@@ -107,17 +107,16 @@ export const loggingOut = ({ userID }) => ( dispatch ) => {
   })
     .then((data) => data.json())
     .then((data) => {
-
     // updates state to render NavBar back to Homepage state
       dispatch({
         type: types.IS_LOGGED_OUT,
-        payload: true,
+        payload: false,
       })
-      
+    })
     .catch((e) => {
       console.log(`ERROR in Actions.js - loggingIn: ${e}`)
-    });
-};
+    })
+}
 
 
 
