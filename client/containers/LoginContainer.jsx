@@ -4,9 +4,7 @@ import * as actions from '../redux/actions/actions';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    //logOut: (userID) => actions.loggingOut(userID),
     loggingIn: (username, password) => dispatch(actions.loggingIn(username, password)),
-    
   }
 }
 
