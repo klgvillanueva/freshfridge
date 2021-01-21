@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { withRouter } from 'react-router';
 import FridgeContainer from '../containers/FridgeContainer.jsx';
 import GroceryContainer from '../containers/GroceryContainer.jsx';
 
@@ -38,3 +39,4 @@ class User extends Component {
 }
 
 export default connect(mapStateToProps, null)(User);
+export default withRouter(User);
