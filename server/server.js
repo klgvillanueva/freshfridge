@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const authRouter = require('./routes/authRouter.js');
 const listRouter = require('./routes/listRouter.js');
+const householdRouter = require('./routes/householdRouter.js');
 
 const db = require('./models/freshModel');
 
@@ -35,7 +36,10 @@ app.use('/auth', authRouter);
 // Any requests to list will be handled within listRouter.js
 app.use('/lists', listRouter);
 
-/** *  MAIN PAGE HANDLER ** */
+// Any requests to household will be handled within householdRouter.js
+app.use('/household', householdRouter);
+
+/***  MAIN PAGE HANDLER ***/
 
 // directs the request to the assets folder for images
 // 404 Errors will not be routed by the backend due to React Router implementation

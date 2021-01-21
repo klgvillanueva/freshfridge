@@ -43,11 +43,11 @@ authController.findUser = (req, res, next) => {
     else {
       // Add the found user id to res.locals so that it can be used by the next middleware.
       const { _id, first_name, username, password, household_id } = result.rows[0];
-      res.locals.userId = _id;
+      res.locals.userID = _id;
       res.locals.firstName = first_name;
       res.locals.username = username;
       res.locals.userPw = password;
-      res.locals.householdId = household_id;
+      res.locals.householdID = household_id;
       return next();
     }
   });
@@ -124,18 +124,18 @@ authController.logout = (req, res, next) => {
 authController.setCookie = (req, res, next) => {
   // receives user id on res.locals (?)
   // sets a cookie
-  res.cookie('ssid', res.locals.userId); //->  res.cookie(key,value)
+  res.cookie('ssid', res.locals.userID); //->  res.cookie(key,value)
   console.log ('Cookie has been created!', res.cookie);
   return next();
 };
 
 authController.createSession = (req, res, next) => {
   const query = `INSERT INTO sessions (cookie_id, expires) VALUES ($1, current_timestamp + interval '1 hour');`;
-  const params = [res.locals.userId];
+  const params = [res.locals.userID];
   // console.loge(``)
   db.query(query, params, (error, result) => {
     if (error) return next({log: `middleware error caught in authController.createSession: ${error}`});
-    console.log(`session created with id ${res.locals.userId}`);
+    console.log(`session created with id ${res.locals.userID}`);
     return next();
   })
 };

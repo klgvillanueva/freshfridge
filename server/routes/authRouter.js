@@ -18,12 +18,16 @@ router.put('/login',
   bcryptController.verifyPassword,
   authController.createSession,
   authController.setCookie,
+  listController.getUserList,
+  listController.getHouseholdList,
   // listController.getList,
   (req, res) => res.status(200).json({
-    userID: res.locals.userId,
+    userID: res.locals.userID,
     firstName: res.locals.firstName,
     username: res.locals.username,
-    householdID: res.locals.householdId
+    householdID: res.locals.householdID,
+    userList: res.locals.userItems,
+    householdList: res.locals.householdItems
   }) // todo: what should be sent back on the response?
 );
 
