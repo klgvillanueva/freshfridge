@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // routes for React Route
 import { Link } from 'react-router-dom';
@@ -20,14 +20,14 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   // dispatchers for NavBar
   return {
-    logOut: (userID) => actions.loggingOut(userID),
-    getUserItems: (userID) => actions.getUserItems(userID),
-    getHouseholdItems: (householdID) => actions.getHouseholdItems(householdID),
-    //loggingIn: (username, password) => actions.loggingIn(username, password),
-    //createUser: (newUserInfo) => actions.createUser(newUserInfo), // arg is an object!!
+    logOut: (userID) => dispatch(actions.loggingOut(userID)),
+    getUserItems: (userID) => dispatch(actions.getUserItems(userID)),
+    getHouseholdItems: (householdID) => dispatch(actions.getHouseholdItems(householdID)),
+    //loggingIn: (username, password) => dispatch(actions.loggingIn(username, password)),
+    //createUser: (newUserInfo) => dispatch(actions.createUser(newUserInfo)), // arg is an object!!
   }
 }
-class App extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props)
     }
@@ -48,6 +48,8 @@ class App extends React.Component {
             ></img>
           </Link>;
       displayNavBar = <NavBar
+            userID={this.props.userID}
+            householdID={this.props.householdID}
             logOut={this.props.logOut}
             getUserItems={this.props.getUserItems}
             getHouseholdItems={this.props.getHouseholdItems}
@@ -80,6 +82,8 @@ class App extends React.Component {
           </Link>;
 
           <NavBar
+            userID={this.props.userID}
+            householdID={this.props.householdID}
             logOut={this.props.logOut}
             getUserItems={this.props.getUserItems}
             getHouseholdItems={this.props.getHouseholdItems}
