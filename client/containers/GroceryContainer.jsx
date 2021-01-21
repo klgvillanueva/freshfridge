@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../redux/actions/actions';
+
 import GroceryItem from '../components/GroceryItem.jsx';
 
 
 const mapStateToProps = (state) => {
-  // userItems: an array or empty array
-  // householdItems: an array or empty array
+  // const { userID, firstName, userItems } = state.user;
+  // const { householdID, householdName, householdItems } = state.household;
+  // return { userID, firstName, userItems, householdID, householdName, householdItems };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  // adding item
-  // updating item
-  // deleting item
-  // moving item
+  return {
+    addItem: (itemInfoObj) => dispatch(actions.addItem(itemInfoObj)),
+    editItem: (itemInfoObj) => dispatch(actions.editItem(itemInfoObj)),
+    deleteItem: (itemID) => dispatch(actions.deleteItem(itemID))
+  }
 }
 
 
@@ -19,23 +24,47 @@ class GroceryContainer extends Component {
   constructor(props){
     super(props)
     // bind the event handlers
-    this.addItemHandler = this.addItemHandler.bind(this);
+    // this.addItemHandler = this.addItemHandler.bind(this);
   }
 
   // declare event handlers
   
-  addItemHandler(payloadObject) {
-    /* Add add Item Dispatcher */
-  }
+  // addItemHandler(payloadObject) {
+  //   /* Add add Item Dispatcher */
+  // }
 
   render() {
+    let groceryItems;
 
+    if (!props.householdItems) {
+      // render the user grocery list
+      const { userID, firstName, userItems } = props;
+      const { editItem, deleteItem} = this.props;
+    
+      groceryItems = householdItems.map((item, idx) => {
+        return <GroceryItem 
+          item={item}
+          editItem={editItem}
+          deleteItem={deleteItem}
+          
+        />
+
+        />;
+      })
+
+    } else {
+
+
+
+
+    }
     // need to have logic to check if this.props:
     // if userItems.length === 0, then we are rendering for Household Page 
     // if householdItems.length === 0, then we are rendering for User Page
 
-    // create groceryItems = [];
 
+    // create groceryItems = [];
+  
     // iterate through items list and push <GroceryItem > for each item
 
     return (
@@ -60,8 +89,8 @@ class GroceryContainer extends Component {
 };
 
 
-//export default connect(mapStateToProps, mapDispatchToProps)(GroceryContainer);
-export default GroceryContainer;
+export default connect(null, mapDispatchToProps)(GroceryContainer);
+// export default GroceryContainer;
 
 
 

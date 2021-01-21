@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../redux/actions/actions';
+
 import FridgeContainer from '../containers/FridgeContainer.jsx';
 import GroceryContainer from '../containers/GroceryContainer.jsx';
 
 
 const mapStateToProps = (state) => {
-  // user name
-  // user's frige list
-  // user's grocery list 
+  const { householdID, householdName, householdItems } = state.household;
+  return { householdID, householdName, householdItems };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  // add item (modal to popup)
-  // update item (by double clicking on item?)
-  // update item for location (shareable, fridge, grocery)
-  // delete item 
-}
+// const mapDispatchToProps = (dispatch) => {
+//   // add item (modal to popup)
+//   // update item (by double clicking on item?)
+//   // update item for location (shareable, fridge, grocery)
+//   // delete item 
+// }
 
 class Household extends Component {
   constructor(props){
@@ -41,14 +43,27 @@ class Household extends Component {
      // make sure the right props and dispatchers get distributed to the containers
 
   render() {
+
+    const { householdID, householdName, householdItems } = this.props;
+
     return( 
     <div className='HouseGrid'>
       House Page Works!
-      <FridgeContainer />
-      <GroceryContainer />
+      <FridgeContainer
+        householdID={householdID}
+        householdName={householdName}
+        householdItems={householdItems} 
+        />
+      <GroceryContainer
+        householdID={householdID}
+        householdName={householdName}
+        householdItems={householdItems} 
+        />
     </div>
     )
   }
 }
 
-export default Household;
+
+export default connect(mapStateToProps, null)(Household);
+// export default Household;
