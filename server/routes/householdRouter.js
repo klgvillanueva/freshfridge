@@ -5,7 +5,7 @@ const router = express.Router();
 
 // inserts new household into households table
 // then redirects to join household
-router.put('/create',
+router.post('/create',
   createHousehold,
   (req, res) => {
     const { householdID } = res.locals;
@@ -14,7 +14,7 @@ router.put('/create',
 
 // updates household_ID for given user_ID
 // then redirects to getHouseholdItems
-router.put('/join',
+router.post('/join',
   joinHousehold,
   (req, res) => {
     const householdID = req.body.householdID ? req.body.householdID : req.query.householdID;

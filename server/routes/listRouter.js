@@ -17,7 +17,7 @@ router.get('/householdItems/:householdID',
 );
 
 // add item to list and retrieve list
-router.put('/',
+router.post('/',
   addItem,
   getUserList,
   getHouseholdList,

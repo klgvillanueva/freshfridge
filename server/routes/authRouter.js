@@ -12,7 +12,7 @@ app.use(cookieParser());
 app.use(express.json()); 
 
 // vanilla log in
-router.put('/login',    
+router.post('/login',    
   authController.findUser,
   // authController.validatePassword,
   bcryptController.verifyPassword,
@@ -31,7 +31,7 @@ router.put('/login',
   }) // todo: what should be sent back on the response?
 );
 
-router.put('/signup',
+router.post('/signup',
   authController.getAllUsers,
   authController.checkUniqueness,   
   bcryptController.hashPassword, 
