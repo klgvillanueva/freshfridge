@@ -5,7 +5,7 @@ import * as actions from '../redux/actions/actions';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loggingIn: (username, password) => dispatch(actions.loggingIn(username, password)),
+    loggingIn: (username, password, history) => dispatch(actions.loggingIn(username, password, history)),
   }
 }
 
@@ -38,8 +38,10 @@ class LoginContainer extends Component {
 
             console.log(usernameInput);
             console.log(passwordInput);
+            console.log('this.props.history: ' + this.props.history);
+            // this.props.history.push('/user');
 
-            this.props.loggingIn(usernameInput, passwordInput);
+            this.props.loggingIn(usernameInput, passwordInput, this.props.history);
           }}
           >login</button>
 

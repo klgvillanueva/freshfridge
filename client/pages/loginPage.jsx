@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 
 import LoginContainer from '../containers/LoginContainer.jsx';
 import '../styles/login.scss';
@@ -18,10 +19,10 @@ class Login extends Component {
   render() {
     return (
       <div className='page' id='loginPage'>
-        <LoginContainer />
+        <LoginContainer history={this.props.history}/>
       </div>
     );
   }
 }
 
-export default Login;
+export default withRouter(Login);

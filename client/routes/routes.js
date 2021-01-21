@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, Switch as Router } from 'react-router-dom';
+import { createBrowserHistory } from "history";
 
 // import pages for routes
 import Household from '../pages/householdPage.jsx';
@@ -9,10 +10,12 @@ import User from '../pages/userPage.jsx';
 import SignUp from '../pages/signupPage.jsx';
 import NoMatch404Error from '../pages/404Error.jsx';
 
+const customHistory = createBrowserHistory();
+
 const RoutesForApp = () => (
-  <Router>
+  <Router history={customHistory}>
     <Route exact path="/">
-      <Login />
+      <Login history={customHistory}/>
     </Route>
     <Route path="/user">
       <User />

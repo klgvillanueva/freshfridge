@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import FridgeContainer from '../containers/FridgeContainer.jsx';
 import GroceryContainer from '../containers/GroceryContainer.jsx';
 
@@ -51,4 +52,4 @@ class User extends Component {
   }
 }
 
-export default User;
+export default withRouter(User);
