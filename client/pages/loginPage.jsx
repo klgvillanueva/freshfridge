@@ -24,12 +24,12 @@ class Login extends Component {
           className="inputBox"
           placeholder="Your Password"
         />
-        <input type="button" class="primaryButton" value="Submit" />
+        <input type="button" className="primaryButton" value="Submit" />
         <hr />
         <p className="or">OR</p>
         <input
           type="button"
-          class="secondaryButton"
+          className="secondaryButton"
           value="Login with Google"
         />
         <p>
