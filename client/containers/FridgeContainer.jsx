@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
-import FridgeItem from "../components/FridgeItem.jsx";
-import userReducer from '../redux/reducers/userReducer.js';
+import { connect } from 'react-redux';
+import * as actions from '../redux/actions/actions';
 
+import FridgeItem from "../components/FridgeItem.jsx";
+// import AddItem from "../components/AddItem.jsx"
+
+const mapStateToProps = (state) => {
+  const { userID, firstName, userItems } = state.user;
+  return {userID, firstName, userItems };
+};
 
 const mapDispatchToProps = (dispatch) => {
-  // userItems: an array or empty array
-  // householdItems: an array or empty array
+  return {
+    addItem: (itemInfoObj) => dispatch(actions.addItem(itemInfoObj)),
+    editItem: (itemInfoObj) => dispatch(actions.editItem(itemInfoObj)),
+    deleteItem: (itemID) => dispatch(actions.deleteItem(itemID))
+    // update item (by double clicking on item?)
+  }
 }
 
-const mapStateToProps = (dispatch) => {
-  // adding item
-  // updating item
-  // deleting item
-  // moving item
-}
 
 class FridgeContainer extends Component {
   constructor(props) {
@@ -60,5 +65,5 @@ class FridgeContainer extends Component {
 };
 
 
-//export default connect(mapStateToProps, mapDispatchToProps)(FridgeContainer);
-export default FridgeContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(FridgeContainer);
+//export default FridgeContainer;
