@@ -3,12 +3,15 @@ import GroceryItem from '../components/GroceryItem.jsx';
 
 
 const mapStateToProps = (state) => {
-  //navbar state 
+  // userItems: an array or empty array
+  // householdItems: an array or empty array
 };
 
 const mapDispatchToProps = (dispatch) => {
-  // dispatcher for sending fetch for login 
-  // dispatcher for sending fetch for signup 
+  // adding item
+  // updating item
+  // deleting item
+  // moving item
 }
 
 
@@ -16,11 +19,20 @@ class GroceryContainer extends Component {
   constructor(props){
     super(props)
     // bind the event handlers
+    this.addItemHandler = this.addItemHandler.bind(this);
   }
 
   // declare event handlers
+  
+  addItemHandler(payloadObject) {
+    /* Add add Item Dispatcher */
+  }
 
   render() {
+
+    // need to have logic to check if this.props:
+    // if userItems.length === 0, then we are rendering for Household Page 
+    // if householdItems.length === 0, then we are rendering for User Page
 
     // create groceryItems = [];
 
@@ -29,7 +41,11 @@ class GroceryContainer extends Component {
     return (
     <div className="GroceryContainer">
       <h1>Grocery List</h1>
-      <button id='AddItemBtn' onClick={() => {/* event handler to invoke dispatcher to add */ }}>
+      <button id='AddItemBtn' onClick={() => {/* 
+      invoke the AddItemModal
+      pass into the AddItem a property of "location: fridge"
+        <AddItem location={'fridge'} addItemHandler={this.addItemHandler} userID={this.props.userID} householdID={this.props.householdID}
+      */ }}>
       </button>
 
       <div className="GroceryList">
