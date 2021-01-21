@@ -16,7 +16,7 @@ const listController = {
      (_id, names, priority, shared?, location) */
   getUserList(req, res, next) {
     // console.log("here is what getList is getting: ", req.body)
-    if (!res.locals.userID) {
+    if (res.locals.userID === undefined) {
       res.locals.userID = req.body.userID ? req.body.userID : req.params.userID;
     }
     const query = `
@@ -61,9 +61,15 @@ const listController = {
     // householdId can come from either the body, if requested straight from the front end
     // or from req.query if coming from middleware (i.e. joinHousehold)
     // const householdID = req.params.householdID ? req.params.householdID : req.query.householdID;
-    if (!res.locals.householdID) {
+    if (res.locals.householdID === undefined) {
       res.locals.householdID = req.body.householdID ? req.body.householdID : req.params.householdID;
     }
+    if (!res.locals.householdID) {
+      res.locals.householdName = null;
+      res.locals.householdItems = [];
+      return next();
+    }
+
     const query = `
       SELECT h._id as "householdID", 
       h.name as "householdName",
@@ -93,11 +99,25 @@ const listController = {
         });
       }
       if (data.rows.length) {
+        res.locals.householdName = data.rows[0].householdName;
         res.locals.householdItems = data.rows[0].householdItems;
+        return next();
       } else {
-        res.locals.householdItems = [];
+        const query = `
+          SELECT name
+          FROM households
+          WHERE _id = $1 
+        `
+        db.query(query, [res.locals.householdID], (err, data) => {
+          if (err) return next({
+            log: `Express error handler caught in getHouseholdList ERROR: ${err}`,
+            message: { err: 'An error occurred in getHouseholdLIst' },
+          });
+          res.locals.householdItems = [];
+          res.locals.householdName = data.rows[0].name;
+          return next();
+        })
       }
-      return next();
     });
   },
 
@@ -156,12 +176,14 @@ const listController = {
     console.log('updateItem request: ', req.body);
     const query = `
       UPDATE items
-      SET fridge = $2, grocery = $3, shared = $4
+      SET name = $2, priority = $3, fridge = $4, grocery = $5, shared = $6
       WHERE _id = $1
       RETURNING user_id, household_id
     `;
     const entries = [
       req.body.itemID,
+      req.body.itemName,
+      req.body.priority,
       req.body.fridge,
       req.body.grocery,
       req.body.shared,
