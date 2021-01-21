@@ -18,7 +18,7 @@ bcryptController.verifyPassword = (req, res, next) => {
   bcrypt.compare(password, userPw, (err, result) => {
     if (err) return next({ log: `middleware error in bcryptController.verifyPassword ${err}` });
     if (result) return next();
-    else return res.status(203).send('Invalid password.');
+    else return res.status(203).json({message: 'Invalid password.'});
   });
 }
 

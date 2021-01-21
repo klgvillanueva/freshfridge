@@ -38,7 +38,7 @@ authController.findUser = (req, res, next) => {
     console.log('findUser query result: ', result.rows);
     // if the response from the database is an empty array, that means no user was found with that name and password
     if (!result.rows.length) {
-      return res.status(203).send('Invalid username.');
+      return res.status(203).json({message: 'Invalid username.'});
     }
     else {
       // Add the found user id to res.locals so that it can be used by the next middleware.
@@ -58,7 +58,7 @@ authController.findUser = (req, res, next) => {
 authController.validatePassword = (req, res, next) => {
   const { password } = req.body; 
   if (password === res.locals.userPw) return next(); 
-  else return res.status(203).send('Invalid password.');
+  else return res.status(203).json({message: 'Invalid password.'});
 }
 
 // query database to find out if a record already exists on users table with that username
@@ -68,7 +68,7 @@ authController.checkUniqueness = (req, res, next) => {
   res.locals.allUsers.forEach((user) => {
     if (user.username === username) {
       console.log('An account with that username already exists. Please log in or try a different username.')
-      return res.status(203).send('An account with that username already exists. Please log in or try a different username.');
+      return res.status(203).json({message: 'An account with that username already exists. Please log in or try a different username.'});
     }
   });
   console.log('Unique username');
@@ -152,7 +152,7 @@ authController.isLoggedIn = (req, res, next) => {
     db.query(query, params, (error, result) => {
       console.log('query result:' + result)
       if (error) return next({log: `middleware error caught in authController.isLoggedIn: ${error}`});
-      if (!result.rows.length) return res.status(203).json('User logged out. Please login.');
+      if (!result.rows.length) return res.status(203).json({message: 'User logged out. Please login.'});
       return next();
     });
   } catch (error) {
