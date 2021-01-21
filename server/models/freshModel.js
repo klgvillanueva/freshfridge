@@ -1,10 +1,10 @@
 const { Pool } = require('pg');
-const databaseURI = require('./databaseURI')
+const databaseURI = require('./databaseURI');
 
 const PG_URI = databaseURI;
 // create a new pool here using the connection string above
 const pool = new Pool({
-  connectionString: PG_URI
+  connectionString: PG_URI,
 });
 
 // We export an object that contains a property called query,
