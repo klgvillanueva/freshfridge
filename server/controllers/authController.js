@@ -48,6 +48,8 @@ authController.findUser = (req, res, next) => {
       res.locals.username = username;
       res.locals.userPw = password;
       res.locals.householdID = household_id;
+      // console.log(`houshold_id: ${household_id}`);
+      // console.log(`res.locals.householdID: ${res.locals.householdID}`);
       return next();
     }
   });
@@ -143,6 +145,7 @@ authController.createSession = (req, res, next) => {
 
 authController.isLoggedIn = (req, res, next) => {
   try {
+    if (!req.cookies.ssid) return res.status(203).json('User logged out. Please login.');
     const query = `SELECT cookie_id from sessions
       WHERE cookie_id = ($1) AND expires >= current_timestamp`;
     const params = [req.cookies.ssid];

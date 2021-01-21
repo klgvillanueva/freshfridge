@@ -14,20 +14,18 @@ app.use(express.json());
 // vanilla log in
 router.post('/login',    
   authController.findUser,
-  // authController.validatePassword,
   bcryptController.verifyPassword,
   authController.createSession,
   authController.setCookie,
   listController.getUserList,
   listController.getHouseholdList,
-  // listController.getList,
   (req, res) => res.status(200).json({
     userID: res.locals.userID,
     firstName: res.locals.firstName,
     username: res.locals.username,
     householdID: res.locals.householdID,
-    userList: res.locals.userItems,
-    householdList: res.locals.householdItems
+    userItems: res.locals.userItems,
+    householdItems: res.locals.householdItems
   }) // todo: what should be sent back on the response?
 );
 
@@ -36,10 +34,8 @@ router.post('/signup',
   authController.checkUniqueness,   
   bcryptController.hashPassword, 
   authController.addUser,
-  // authController.findUser,
   authController.createSession,
   authController.setCookie,
-  // listController.getList,
   (req, res) => res.status(200).json({
     userID: res.locals.userID,
     firstName: res.locals.firstName,

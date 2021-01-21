@@ -1,11 +1,13 @@
 const express = require('express');
 const { joinHousehold, createHousehold } = require('../controllers/householdController.js');
+const { isLoggedIn } = require('../controllers/authController.js');
 
 const router = express.Router();
 
 // inserts new household into households table
 // then redirects to join household
 router.post('/create',
+  isLoggedIn,
   createHousehold,
   (req, res) => {
     const { householdID } = res.locals;
@@ -15,6 +17,7 @@ router.post('/create',
 // updates household_ID for given user_ID
 // then redirects to getHouseholdItems
 router.post('/join',
+  isLoggedIn,
   joinHousehold,
   (req, res) => {
     const householdID = req.body.householdID ? req.body.householdID : req.query.householdID;
