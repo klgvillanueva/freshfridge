@@ -1,10 +1,10 @@
-import * as types from '../constants/actionTypes';
+import * as types from './constants/actionTypes';
 
 
 /**** IF NEEDED, DOES API CALLS TO SERVER AND CREATES THE ACTION OBJ WITH INFO THAT STATE NEEDS TO UPDATE ***/
 
 // to log into account
-export const loggingIn = ({ username, password }) => ( dispatch ) => {
+export const loggingIn = (username, password) => ( dispatch ) => {
 
   fetch('/auth/login', {
     method: 'POST',
@@ -96,10 +96,10 @@ export const createUser = ({ firstName, username, password }) => ( dispatch ) =>
 
 
 // to log out of account
-export const loggingOut = ({ userID }) => ( dispatch ) => {
+export const loggingOut = (userID) => ( dispatch ) => {
 
   fetch('/auth/logout', {
-    method: 'PUT',
+    method: 'POST',
     headers: {
       'Content-Type': 'Application/JSON',
     },
@@ -203,7 +203,7 @@ export const joinHousehold = ({ householdID, userID }) => ( dispatch ) => {
 export const addItem = ({ itemName, priority, shared, grocery, fridge, userID, householdID }) => ( dispatch ) => {
 
   fetch('/lists', {
-    method: 'PUT',
+    method: 'POST',
     headers: {
       'Content-Type': 'Application/JSON',
     },
@@ -312,7 +312,7 @@ export const editItem = ({ itemID, shared, grocery, fridge }) => ( dispatch ) =>
 
 
 // get all user's items
-export const getUserItems = ({ userID }) => ( dispatch ) => {
+export const getUserItems = (userID) => ( dispatch ) => {
 
   fetch(`/lists/userItems/${userID}`)
     .then((data) => data.json())
@@ -333,7 +333,7 @@ export const getUserItems = ({ userID }) => ( dispatch ) => {
 
 
 // get all household items
-export const getHouseholdItems = ({ householdID }) => ( dispatch ) => {
+export const getHouseholdItems = (householdID) => ( dispatch ) => {
 
   fetch(`/lists/householdItems/${householdID}`)
     .then((data) => data.json())

@@ -27,7 +27,7 @@ const userReducer = (state = initialState, action) => {
     }
     
     case types.USER_INFO: {
-      const newUserItems;
+      let newUserItems;
       // if user is a new user, then server will not send back a userItem property. we must check if it exists: 
       !action.payload.userItems ? newUserItems = [] : newUserItems = action.payload.userItems;
 
