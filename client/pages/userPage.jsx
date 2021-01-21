@@ -5,7 +5,8 @@ import GroceryContainer from '../containers/GroceryContainer.jsx';
 
 const mapStateToProps = (state) => {
   // user name
-  // user's frige list
+  //householdItem
+  // user's fridge list
   // user's grocery list 
 };
 
@@ -15,8 +16,6 @@ const mapDispatchToProps = (dispatch) => {
   // update item for location (shareable, fridge, grocery)
   // delete item 
 }
-
-
 
 class User extends Component {
   constructor(props){
