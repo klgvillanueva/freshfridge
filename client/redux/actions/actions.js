@@ -18,35 +18,39 @@ export const loggingIn = (username, password) => ( dispatch ) => {
   })
     .then((data) => data.json())
     .then((data) => {
-      const { userID, firstName, username, userItems, householdID, householdName, householdItems } = data;
+      if (!data.message) {
+        const { userID, firstName, username, userItems, householdID, householdName, householdItems } = data;
 
-      // route to overallReducer
-      dispatch({
-        type: types.IS_LOGGED_IN,
-        payload: true,
-      });
-      
-      // to userReducer
-      dispatch({
-        type: types.USER_INFO,
-        payload: {
-          userID: userID,
-          firstName: firstName,
-          username: username,
-          userItems: userItems,
-          householdID: householdID,
-        }
-      });
-
-      // to householdReducer (could be null)
-      dispatch({
-        type: types.HOUSEHOLD_INFO,
-        payload: {
-          householdID: householdID,
-          householdName: householdName,
-          householdItems: householdItems, // includes all properties of an item AND user's first_name
-        }
-      })
+        // route to overallReducer
+        dispatch({
+          type: types.IS_LOGGED_IN,
+          payload: true,
+        });
+        
+        // to userReducer
+        dispatch({
+          type: types.USER_INFO,
+          payload: {
+            userID: userID,
+            firstName: firstName,
+            username: username,
+            userItems: userItems,
+            householdID: householdID,
+          }
+        });
+  
+        // to householdReducer (could be null)
+        dispatch({
+          type: types.HOUSEHOLD_INFO,
+          payload: {
+            householdID: householdID,
+            householdName: householdName,
+            householdItems: householdItems, // includes all properties of an item AND user's first_name
+          }
+        })
+      } else {
+        return alert('Invalid username or password')
+      }
     })
     .catch((e) => {
       console.log(`ERROR in Actions.js - loggingIn: ${e}`)
@@ -70,24 +74,28 @@ export const createUser = (firstName, username, password) => ( dispatch ) => {
   })
     .then((data) => data.json())
     .then((data) => {
-      const { userID, firstName, username, householdID } = data;
+      if (!data.message) {
+        const { userID, firstName, username, householdID } = data;
 
-      // route to overall Reducer
-      dispatch({
-        type: types.IS_LOGGED_IN,
-        payload: true,
-      });
-      
-      // route to UserReducer
-      dispatch({
-        type: types.USER_INFO,
-        payload: {
-          userID: userID,
-          firstName: firstName,
-          username: username,
-          householdID: householdID, // could be null
-        }
-      });
+        // route to overall Reducer
+        dispatch({
+          type: types.IS_LOGGED_IN,
+          payload: true,
+        });
+        
+        // route to UserReducer
+        dispatch({
+          type: types.USER_INFO,
+          payload: {
+            userID: userID,
+            firstName: firstName,
+            username: username,
+            householdID: householdID, // could be null
+          }
+       })
+      } else {
+        return alert(data.message)
+      }
     })
     .catch((e) => {
       console.log(`ERROR in Actions.js - createUser: ${e}`)
@@ -136,23 +144,29 @@ export const createHousehold = (householdName, userID) => ( dispatch ) => {
   })
     .then((data) => data.json())
     .then((data) => {
-      const { householdID, householdName, householdItems } = data;
-    
-      // add householdID to userReducer
-      dispatch({
-        type: types.ADD_HOUSEHOLD_TO_USER,
-        payload: householdID,
-      })
 
-      // add to HouseholdReducer
-      dispatch({
-        type: types.HOUSEHOLD_INFO,
-        payload: {
-          householdID: householdID,
-          householdName: householdName,
-          householdItems: householdItems, // includes all properties of an item AND user's first_name or could be null
-        }
-      })
+      if (!data.message) {
+        const { householdID, householdName, householdItems } = data;
+      
+        // add householdID to userReducer
+        dispatch({
+          type: types.ADD_HOUSEHOLD_TO_USER,
+          payload: householdID,
+        })
+  
+        // add to HouseholdReducer
+        dispatch({
+          type: types.HOUSEHOLD_INFO,
+          payload: {
+            householdID: householdID,
+            householdName: householdName,
+            householdItems: householdItems, // includes all properties of an item AND user's first_name or could be null
+          }
+        })
+      } else {
+        return alert(`You've been logged out! Please log back in 🤪`)
+      }
+
     })
     .catch((e) => {
       console.log(`ERROR in Actions.js - createHousehold: ${e}`)
@@ -175,23 +189,27 @@ export const joinHousehold = (householdID, userID) => ( dispatch ) => {
   })
     .then((data) => data.json())
     .then((data) => {
-      const { householdID, householdName, householdItems } = data;
-      
-      // route to UserReducer
-      dispatch({
-        type: types.ADD_HOUSEHOLD_TO_USER,
-        payload: householdID
-      });
-
-      // route to HouseholdReducer
-      dispatch({
-        type: types.HOUSEHOLD_INFO,
-        payload: {
-          householdID: householdID,
-          householdName: householdName,
-          householdItems: householdItems, // includes all properties of an item AND user's first_name or could be null
-        }
-      })
+      if (!data.message){
+        const { householdID, householdName, householdItems } = data;
+        
+        // route to UserReducer
+        dispatch({
+          type: types.ADD_HOUSEHOLD_TO_USER,
+          payload: householdID
+        });
+  
+        // route to HouseholdReducer
+        dispatch({
+          type: types.HOUSEHOLD_INFO,
+          payload: {
+            householdID: householdID,
+            householdName: householdName,
+            householdItems: householdItems, // includes all properties of an item AND user's first_name or could be null
+          }
+        })
+      } else {
+        return alert(`You've been logged out! Please log back in 🤪`)
+      }
     })
     .catch((e) => {
       console.log(`ERROR in Actions.js - joinHousehold: ${e}`)
@@ -219,19 +237,23 @@ export const addItem = ({ itemName, priority, shared, grocery, fridge, userID, h
   })
     .then((data) => data.json())
     .then((data) => {
-      const { userItems, householdItems } = data;
-
-      // add Household to UserID
-      dispatch({
-        type: types.UPDATE_USER_ITEMS,
-        payload: userItems
-      });
-
-      // updates state with household info
-      dispatch({
-        type: types.UPDATE_HOUSEHOLD_ITEMS,
-        payload: householdItems // includes all properties of an item AND user's first_name or could be null
-      })
+      if (!data.message){
+        const { userItems, householdItems } = data;
+  
+        // add Household to UserID
+        dispatch({
+          type: types.UPDATE_USER_ITEMS,
+          payload: userItems
+        });
+  
+        // updates state with household info
+        dispatch({
+          type: types.UPDATE_HOUSEHOLD_ITEMS,
+          payload: householdItems // includes all properties of an item AND user's first_name or could be null
+        })
+      } else {
+        return alert(`You've been logged out! Please log back in 🤪`)
+      }
     })
     .catch((e) => {
       console.log(`ERROR in Actions.js - addItem: ${e}`)
@@ -253,19 +275,23 @@ export const deleteItem = (itemID) => ( dispatch ) => {
   })
     .then((data) => data.json())
     .then((data) => {
-      const { userItems, householdItems } = data;
-      
-      // add Household to UserID
-      dispatch({
-        type: types.UPDATE_USER_ITEMS,
-        payload: userItems
-      });
-
-      // updates state with household info
-      dispatch({
-        type: types.UPDATE_HOUSEHOLD_ITEMS,
-        payload: householdItems // includes all properties of an item AND user's first_name or could be null
-      });
+      if (!data.message){
+        const { userItems, householdItems } = data;
+        
+        // add Household to UserID
+        dispatch({
+          type: types.UPDATE_USER_ITEMS,
+          payload: userItems
+        });
+  
+        // updates state with household info
+        dispatch({
+          type: types.UPDATE_HOUSEHOLD_ITEMS,
+          payload: householdItems // includes all properties of an item AND user's first_name or could be null
+        });
+      } else {
+        return alert(`You've been logged out! Please log back in 🤪`)
+      }
     })
     .catch((e) => {
       console.log(`ERROR in Actions.js - deleteItem: ${e}`)
@@ -292,19 +318,23 @@ export const editItem = ({ itemID, itemName, priority, shared, grocery, fridge }
   })
     .then((data) => data.json())
     .then((data) => {
-      const { userItems, householdItems } = data;
-
-      // add Household to UserID
-      dispatch({
-        type: types.UPDATE_USER_ITEMS,
-        payload: userItems
-      });
-
-      // updates state with household info
-      dispatch({
-        type: types.UPDATE_HOUSEHOLD_ITEMS,
-        payload: householdItems // includes all properties of an item AND user's first_name or could be null
-      })
+      if (!data.message){
+        const { userItems, householdItems } = data;
+  
+        // add Household to UserID
+        dispatch({
+          type: types.UPDATE_USER_ITEMS,
+          payload: userItems
+        });
+  
+        // updates state with household info
+        dispatch({
+          type: types.UPDATE_HOUSEHOLD_ITEMS,
+          payload: householdItems // includes all properties of an item AND user's first_name or could be null
+        })
+      } else {
+        return alert(`You've been logged out! Please log back in 🤪`)
+      }
     })
     .catch((e) => {
       console.log(`ERROR in Actions.js - editItem: ${e}`)
@@ -319,18 +349,21 @@ export const getUserItems = (userID) => ( dispatch ) => {
   fetch(`/lists/userItems/${userID}`)
     .then((data) => data.json())
     .then((data) => {
-      const { userItems } = data;
-
-      // add Household to UserID
-      dispatch({
-        type: types.UPDATE_USER_ITEMS,
-        payload: userItems
-      })
-
+      if (!data.message){
+        const { userItems } = data;
+  
+        // add Household to UserID
+        dispatch({
+          type: types.UPDATE_USER_ITEMS,
+          payload: userItems
+        })
+      } else {
+        return alert(`You've been logged out! Please log back in 🤪`)
+      }
+    })
     .catch((e) => {
       console.log(`ERROR in Actions.js - getUserItems: ${e}`)
     });
-  })
 };
 
 
@@ -340,13 +373,17 @@ export const getHouseholdItems = (householdID) => ( dispatch ) => {
   fetch(`/lists/householdItems/${householdID}`)
     .then((data) => data.json())
     .then((data) => {
-      const { householdItems } = data;
-
-      // updates state with household info
-      dispatch({
-        type: types.UPDATE_HOUSEHOLD_ITEMS,
-        payload: householdItems // includes all properties of an item AND user's first_name or could be null
-      })
+      if (!data.message){
+        const { householdItems } = data;
+  
+        // updates state with household info
+        dispatch({
+          type: types.UPDATE_HOUSEHOLD_ITEMS,
+          payload: householdItems // includes all properties of an item AND user's first_name or could be null
+        })
+      } else {
+        return alert(`You've been logged out! Please log back in 🤪`)
+      }
     })
     .catch((e) => {
       console.log(`ERROR in Actions.js - getHouseholdItems: ${e}`)
