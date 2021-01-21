@@ -20,35 +20,72 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   // dispatchers for NavBar
   return {
-    loggingIn: (username, password) => actions.loggingIn(username, password),
     logOut: (userID) => actions.loggingOut(userID),
     getUserItems: (userID) => actions.getUserItems(userID),
     getHouseholdItems: (householdID) => actions.getHouseholdItems(householdID),
+    //loggingIn: (username, password) => actions.loggingIn(username, password),
     //createUser: (newUserInfo) => actions.createUser(newUserInfo), // arg is an object!!
   }
 }
 class App extends React.Component {
   constructor(props) {
     super(props)
-
     }
 
   render() {
   
     let displayNavBar;
+    let logo;
     if (this.props.isLoggedIn){
+      logo = 
+          <Link to="/user"> 
+            <img
+              id="logo"
+              src="./assets/fflogo.png"
+              alt="Fresh Fridge Logo"
+              height='150px'
+              width='250px'
+            ></img>
+          </Link>;
       displayNavBar = <NavBar
-
-        />
+            logOut={this.props.logOut}
+            getUserItems={this.props.getUserItems}
+            getHouseholdItems={this.props.getHouseholdItems}
+        />;
     } else {
       displayNavBar = null;
+      logo =             
+          <img
+            id="logo"
+            src="./assets/fflogo.png"
+            alt="Fresh Fridge Logo"
+            height='150px'
+            width='250px'>
+          </img>
     }
     
     return (
-      <div className="masterContainer">
-        <div className="masterContainerHeader">
-           { displayNavBar }
+      <div>
+        <div className="appHeader">
+          {/* logo */}
+          {/* displayNavBar */}
+          <Link to="/user"> 
+            <img
+              id="logo"
+              src="./assets/fflogo.png"
+              alt="Fresh Fridge Logo"
+              height='150px'
+              width='250px'
+            ></img>
+          </Link>;
+
+          <NavBar
+            logOut={this.props.logOut}
+            getUserItems={this.props.getUserItems}
+            getHouseholdItems={this.props.getHouseholdItems}
+          />
         </div>
+
         <div className="content2by2">
           <RoutesForApp />
         </div>
@@ -59,10 +96,6 @@ class App extends React.Component {
 
 //export default App;
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-
-
-
 
 
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FridgeItem from "../components/FridgeItem.jsx";
+import userReducer from '../redux/reducers/userReducer.js';
 
 
 const mapDispatchToProps = (dispatch) => {
@@ -31,10 +32,14 @@ class FridgeContainer extends Component {
     // need to have logic to check if this.props:§z
       // if userItems.length === 0, then we are rendering for Household Page 
       // if householdItems.length === 0, then we are rendering for User Page
-
+ 
     // create fridgeItems = [];
+    const fridgeItems = [];
 
     // iterate through items list and push <FridgeItem > for each item
+    for (let i = 0; i < this.props.userItems.length; i += 1) {
+      fridgeItems.push(<FridgeItem />)
+    }
 
     return (
     <div className="FridgeContainer"> {/*Faraz, please rename the className to LoginContainer and match in stylesheet*/}
@@ -46,7 +51,7 @@ class FridgeContainer extends Component {
       */ }}>
         </button>
       <div className='FridgeList'>  
-      {/* {fridgeItems */}
+      {fridgeItems}
       </div>
     </div>
     );

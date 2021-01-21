@@ -1,25 +1,83 @@
 import React, { Component } from 'react';
-//import Auth from '../components/Auth.jsx';
-// import GoogleAuth from './GoogleAuth.jsx';
+import { connect } from 'react-redux';
+import * as actions from '../redux/actions/actions';
 
 const mapDispatchToProps = (dispatch) => {
-  // dispatcher for sending fetch for login
-  // dispatcher for sending fetch for signup
-};
+  return {
+    //logOut: (userID) => actions.loggingOut(userID),
+    loggingIn: (username, password) => dispatch(actions.loggingIn(username, password)),
+    
+  }
+}
 
 class LoginContainer extends Component {
   constructor(props) {
     super(props);
-    // bind the event handlers
-  }
-
-  // declare event handlers
+    }
 
   render() {
     return (
+
+      <div className="logInForm">
+        <h1>Please Log In </h1>
+        <input 
+          type="text" 
+          className="inputBox" 
+          id='usernameInput'
+          placeholder="username"
+          />
+        <input
+          type="password"
+          className="inputBox"
+          id='passwordInput'
+          placeholder="password"
+        />
+        <button type="button" className="primaryButton"
+        onClick={() => {
+          const usernameInput = document.getElementById('usernameInput').value;
+          const passwordInput = document.getElementById('passwordInput').value;
+
+          console.log(usernameInput);
+          console.log(passwordInput);
+
+          this.props.loggingIn(usernameInput, passwordInput);
+          
+        }}
+        >login</button>
+        <hr />
+        <p className="or">OR</p>
+        <input
+          type="button"
+          className="secondaryButton"
+          value="Login with Google"
+        />
+        <p>
+          Don't have an account? 
+          <a href="#"> Sign up here! 
+          {/* pop open the Sign up Modal or reroute to Sign up page */}
+          </a>
+        </p>
+    </div>
+
+    );
+  }
+}
+
+export default connect(null, mapDispatchToProps)(LoginContainer);
+//export default LoginContainer;
+
+
+
+
+
+
+
+
+
+/*
       <div className="MainContainer">
         {' '}
-        {/*Faraz, please rename the className to LoginContainer and match in stylesheet*/}
+        {/*Faraz, please rename the className to LoginContainer and match in stylesheet}
         {/* 
       input for Username 
       input for Password
@@ -34,14 +92,16 @@ class LoginContainer extends Component {
     <p>I agree to the Terms of Services</p>
   </div>
 
-      */}
+      }
       </div>
-    );
-  }
-}
 
-//export default connect(null, mapDispatchToProps)(LoginContainer);
-export default LoginContainer;
+
+
+*/
+
+
+
+
 
 /*
 original loginContainer

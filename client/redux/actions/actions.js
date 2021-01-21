@@ -55,7 +55,7 @@ export const loggingIn = (username, password) => ( dispatch ) => {
 
 
 // to log into account as a new user
-export const createUser = ({ firstName, username, password }) => ( dispatch ) => {
+export const createUser = (firstName, username, password) => ( dispatch ) => {
 
   fetch('/auth/signup', {
     method: 'POST',
@@ -122,7 +122,7 @@ export const loggingOut = (userID) => ( dispatch ) => {
 
 
 // creating a new household and update state
-export const createHousehold = ({ householdName, userID }) => ( dispatch ) => {
+export const createHousehold = (householdName, userID) => ( dispatch ) => {
 
   fetch('/household/create', {
     method: 'POST',
@@ -161,7 +161,7 @@ export const createHousehold = ({ householdName, userID }) => ( dispatch ) => {
 
 
 // to join an existing Household
-export const joinHousehold = ({ householdID, userID }) => ( dispatch ) => {
+export const joinHousehold = (householdID, userID) => ( dispatch ) => {
 
   fetch('/household/join', {
     method: 'POST',
@@ -240,7 +240,7 @@ export const addItem = ({ itemName, priority, shared, grocery, fridge, userID, h
 
 
 // to delete an item
-export const deleteItem = ({ itemID }) => ( dispatch ) => {
+export const deleteItem = (itemID) => ( dispatch ) => {
 
   fetch('/lists', {
     method: 'DELETE',
@@ -274,7 +274,7 @@ export const deleteItem = ({ itemID }) => ( dispatch ) => {
 
 
 // to move/edit item
-export const editItem = ({ itemID, shared, grocery, fridge }) => ( dispatch ) => {
+export const editItem = ({ itemID, itemName, priority, shared, grocery, fridge }) => ( dispatch ) => {
 
   fetch('/lists', {
     method: 'PATCH',
@@ -283,6 +283,8 @@ export const editItem = ({ itemID, shared, grocery, fridge }) => ( dispatch ) =>
     },
     body: JSON.stringify({
       itemID: itemID,
+      itemName: itemName,
+      priority: priority,
       shared: shared,
       grocery: grocery,
       fridge: fridge,

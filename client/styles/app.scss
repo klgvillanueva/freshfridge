@@ -7,7 +7,7 @@ html {
 
 body {
   font-size: 10px;
-  font-family: 'Times New Roman', Times, serif;
+  //font-family: 'Times New Roman', Times, serif;
   padding: 0;
   margin: 0;
 }
@@ -24,6 +24,15 @@ h5,
 h6 {
   margin: 0px;
 }
+
+.appHeader {
+  display: inline-flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+/*
+
 
 .masterContainer {
   border: 1px solid black;
@@ -43,14 +52,8 @@ h6 {
   grid-column: 2 / -2;
 }
 
-/*
 
 
-.appHeader {
-  display: inline-flex;
-  justify-content: space-between;
-  width: 100%;
-}
 
 .MainContainer {
   padding: 10px 10px 10px 30px;
