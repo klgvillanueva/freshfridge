@@ -110,13 +110,13 @@ const listController = {
       VALUES ($1, $2, $3, $4, $5, $6, $7)
     `;
     const entries = [
-      req.body.name,
+      req.body.itemName,
       req.body.priority,
       req.body.shared,
       req.body.fridge,
       req.body.grocery,
-      req.body.userId,
-      req.body.householdId,
+      req.body.userID,
+      req.body.householdID,
     ];
     db.query(query, entries, (err, data) => {
       if (err) {
