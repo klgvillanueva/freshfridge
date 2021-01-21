@@ -41,9 +41,10 @@ router.put('/signup',
   authController.setCookie,
   // listController.getList,
   (req, res) => res.status(200).json({
-    userID: res.locals.userId,
+    userID: res.locals.userID,
     firstName: res.locals.firstName,
     username: res.locals.username,
+    householdID: res.locals.householdID
   }) // todo: what should be sent back on the response?
 );
 

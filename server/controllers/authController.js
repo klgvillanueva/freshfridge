@@ -94,10 +94,11 @@ authController.addUser = (req, res, next) => {
     }
 
     console.log('addUser query result: ', result.rows);
-    const {_id, first_name, username } = result.rows[0];
-    res.locals.userId = _id;
+    const {_id, first_name, username, household_id } = result.rows[0];
+    res.locals.userID = _id;
     res.locals.firstName = first_name;
     res.locals.username = username;
+    res.locals.householdID = household_id;
     return next();
   });
 };
