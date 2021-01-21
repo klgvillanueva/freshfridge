@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions/actions';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    //logOut: (userID) => actions.loggingOut(userID),
     loggingIn: (username, password) => dispatch(actions.loggingIn(username, password)),
-    
   }
 }
 
@@ -32,25 +31,28 @@ class LoginContainer extends Component {
           id='passwordInput'
           placeholder="password"
         />
-        <button type="button" className="primaryButton"
-        onClick={() => {
-          const usernameInput = document.getElementById('usernameInput').value;
-          const passwordInput = document.getElementById('passwordInput').value;
+          <button type="button" className="primaryButton"
+          onClick={() => {
+            const usernameInput = document.getElementById('usernameInput').value;
+            const passwordInput = document.getElementById('passwordInput').value;
 
-          console.log(usernameInput);
-          console.log(passwordInput);
+            console.log(usernameInput);
+            console.log(passwordInput);
 
-          this.props.loggingIn(usernameInput, passwordInput);
-          
-        }}
-        >login</button>
+            this.props.loggingIn(usernameInput, passwordInput);
+          }}
+          >login</button>
+
         <hr />
+
         <p className="or">OR</p>
-        <input
+
+        <button
           type="button"
           className="secondaryButton"
-          value="Login with Google"
-        />
+          >Login with Google
+        </button>
+        
         <p>
           Don't have an account? 
           <a href="#"> Sign up here! 
@@ -67,7 +69,24 @@ export default connect(null, mapDispatchToProps)(LoginContainer);
 //export default LoginContainer;
 
 
+/*
+testing the link button
 
+        <Link {/*to='/user' }>
+        <button type="button" className="primaryButton"
+        onClick={() => {
+          const usernameInput = document.getElementById('usernameInput').value;
+          const passwordInput = document.getElementById('passwordInput').value;
+
+          console.log(usernameInput);
+          console.log(passwordInput);
+
+          this.props.loggingIn(usernameInput, passwordInput);
+        }}
+        >login</button>
+    </Link>
+
+*/
 
 
 
