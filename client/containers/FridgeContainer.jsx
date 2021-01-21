@@ -5,11 +5,6 @@ import * as actions from '../redux/actions/actions';
 import FridgeItem from "../components/FridgeItem.jsx";
 // import AddItem from "../components/AddItem.jsx"
 
-const mapStateToProps = (state) => {
-  const { userID, firstName, userItems } = state.user;
-  return {userID, firstName, userItems };
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
     addItem: (itemInfoObj) => dispatch(actions.addItem(itemInfoObj)),
@@ -18,32 +13,46 @@ const mapDispatchToProps = (dispatch) => {
     // update item (by double clicking on item?)
   }
 }
-
-
 class FridgeContainer extends Component {
   constructor(props) {
     super(props)
-    // bind event handlers here
-    this.addItemHandler = this.addItemHandler.bind(this);
   }
 
-  // declare event handlers
-  addItemHandler(payloadObject){
-    // invoke the add item dispatcher here
-  }
 
   render() {
+    let fridgeItems = [];
 
-    // need to have logic to check if this.props:§z
+    if (!props.householdItems) {
+      // render the user fridge 
+      const { userID, firstName, userItems } = props;
+      const { addItem, editItem, deleteItem } = this.props;
+      
+      userItems.forEach((item, idx) => {
+        fridgeItems.push(
+          <FridgeItem 
+
+          />)
+      })
+
+
+
+
+    } else {
+      // household
+    }
+
+    // need to have logic to check if this.props:
       // if userItems.length === 0, then we are rendering for Household Page 
       // if householdItems.length === 0, then we are rendering for User Page
 
-    // const fridgeItems = [];
+    
 
     // iterate through items list and push <FridgeItem > for each item
     // for (let i = 0; i < this.props.userItems.length; i += 1) {
     //   fridgeItems.push(<FridgeItem />)
     // }
+
+  
 
     return (
     <div className="FridgeContainer"> {/*Faraz, please rename the className to LoginContainer and match in stylesheet*/}
@@ -65,5 +74,5 @@ class FridgeContainer extends Component {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(FridgeContainer);
+export default connect(null, mapDispatchToProps)(FridgeContainer);
 //export default FridgeContainer;
