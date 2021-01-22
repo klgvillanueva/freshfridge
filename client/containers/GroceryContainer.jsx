@@ -5,12 +5,6 @@ import * as actions from '../redux/actions/actions';
 import GroceryItem from '../components/GroceryItem.jsx';
 
 
-const mapStateToProps = (state) => {
-  // const { userID, firstName, userItems } = state.user;
-  // const { householdID, householdName, householdItems } = state.household;
-  // return { userID, firstName, userItems, householdID, householdName, householdItems };
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
     addItem: (itemInfoObj) => dispatch(actions.addItem(itemInfoObj)),
@@ -23,15 +17,8 @@ const mapDispatchToProps = (dispatch) => {
 class GroceryContainer extends Component {
   constructor(props){
     super(props)
-    // bind the event handlers
-    // this.addItemHandler = this.addItemHandler.bind(this);
   }
 
-  // declare event handlers
-  
-  // addItemHandler(payloadObject) {
-  //   /* Add add Item Dispatcher */
-  // }
 
   render() {
     let groceryItems;
@@ -43,18 +30,26 @@ class GroceryContainer extends Component {
     
       groceryItems = householdItems.map((item, idx) => {
         return <GroceryItem 
+          isHousehold={false}
           item={item}
           editItem={editItem}
           deleteItem={deleteItem}
-          
         />
-
-        />;
       })
 
     } else {
 
-
+      const { householdID, householdName, householdItems } = props;
+      const { editItem, deleteItem} = this.props;
+    
+      groceryItems = householdItems.map((item, idx) => {
+        return <GroceryItem 
+          isHousehold={true}
+          item={item}
+          editItem={editItem}
+          deleteItem={deleteItem}
+        />
+      })
 
 
     }

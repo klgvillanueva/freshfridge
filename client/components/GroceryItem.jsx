@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 
 const GroceryItem = (props) => {
 
-  // destructure the props object
+  if (isHousehold) {
+  // render the household item
 
-    // confirm if username is null,
+    
 
-    let name;
-    if (!username) {
-      name = null
-    } else {
-      name = <span> {props.username} </span>;
-    }
+  } else {
+    // render user item
+
+
+  }  
 
   return (
     <div className = 'GroceryItemCard' key={`G${index}`}  >
